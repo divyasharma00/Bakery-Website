@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #be653b;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2em;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        section {
+            padding: 20px;
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .menu-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 0;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .pagination button {
+            padding: 12px 24px;
+            margin: 0 15px;
+            border: none;
+            background-color: #be653b;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination button:hover {
+            background-color: #a85227;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .pagination button:disabled {
+            background-color: #ccc;
+            cursor: default;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gallery</h1>
+        </header>
+        <section id="menu-section"></section>
+        <div class="pagination">
+            <button onclick="showPreviousPage()" id="prev-button" disabled>Previous</button>
+            <button onclick="showNextPage()" id="next-button">Next</button>
+        </div>
+        <footer>
+            <p>&copy; 2025 Sweet Delights Bakery</p>
+        </footer>
+    </div>
+
+    <script>
+        const menuItems = [
+            { image: "https://th.bing.com/th/id/OIP.Z1wKL0LJPXjEzrSnmcDQxgHaLH?w=2332&h=3498&rs=1&pid=ImgDetMain" },
+            { image: "https://thebusybaker.ca/wp-content/uploads/2020/07/blueberry-muffins-fb-ig-7-scaled.jpg" },
+            { image: "https://th.bing.com/th/id/OIP.b8pBTSDstc7-jAIq7Fs6GgHaJH?w=831&h=1023&rs=1&pid=ImgDetMain" },
+            { image: "https://static01.nyt.com/images/2014/05/14/dining/14REDVELVET/14REDVELVET-superJumbo-v4.jpg" },
+            { image: "https://th.bing.com/th/id/OIP.JOa-69PHRjga9loxsb88SwHaE7?rs=1&pid=ImgDetMain" },
+            { image: "https://sweetpeaskitchen.files.wordpress.com/2010/10/dsc_0526.jpg" },
+            { image: "https://th.bing.com/th/id/OIP.Z1wKL0LJPXjEzrSnmcDQxgHaLH?w=2332&h=3498&rs=1&pid=ImgDetMain" },
+            { image: "https://thebusybaker.ca/wp-content/uploads/2020/07/blueberry-muffins-fb-ig-7-scaled.jpg" },
+            { image: "https://th.bing.com/th/id/OIP.b8pBTSDstc7-jAIq7Fs6GgHaJH?w=831&h=1023&rs=1&pid=ImgDetMain" },
+            { image: "https://static01.nyt.com/images/2014/05/14/dining/14REDVELVET/14REDVELVET-superJumbo-v4.jpg" },
+            { image: "https://th.bing.com/th/id/OIP.JOa-69PHRjga9loxsb88SwHaE7?rs=1&pid=ImgDetMain" },
+            { image: "https://sweetpeaskitchen.files.wordpress.com/2010/10/dsc_0526.jpg" }
+        ];
+
+        const itemsPerPage = 6;
+        let currentPage = 0;
+        const menuSection = document.getElementById("menu-section");
+        const prevButton = document.getElementById("prev-button");
+        const nextButton = document.getElementById("next-button");
+
+        function displayMenuItems(items) {
+            let menuHtml = "";
+            items.forEach(item => {
+                menuHtml += `
+                    <div class="menu-item">
+                        <img src="${item.image}" alt="Gallery Image">
+                    </div>
+                `;
+            });
+            menuSection.innerHTML = menuHtml;
+        }
+
+        function showPage(page) {
+            const startIndex = page * itemsPerPage;
+            const endIndex = Math.min((page + 1) * itemsPerPage, menuItems.length);
+            const pageItems = menuItems.slice(startIndex, endIndex);
+            displayMenuItems(pageItems);
+
+            prevButton.disabled = page === 0;
+            nextButton.disabled = (page + 1) * itemsPerPage >= menuItems.length;
+        }
+
+        function showPreviousPage() {
+            showPage(currentPage - 1);
+            currentPage--;
+        }
+
+        function showNextPage() {
+            showPage(currentPage + 1);
+            currentPage++;
+        }
+
+        showPage(currentPage);
+    </script>
+</body>
+</html>

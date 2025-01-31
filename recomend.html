@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Delights Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function getRecommendation() {
+            const recommendations = [
+                "Try our freshly baked Croissants!",
+                "Our Chocolate Lava Cake is a must-have!",
+                "Don't miss out on our Blueberry Muffins!",
+                "Enjoy a slice of our Classic Cheesecake!",
+                "Warm up with our delicious Apple Pie!"
+            ];
+            const randomIndex = Math.floor(Math.random() * recommendations.length);
+            document.getElementById("recommendation-text").innerText = recommendations[randomIndex];
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Sweet Delights Bakery</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>Get a Bakery Recommendation!</h2>
+        <button onclick="getRecommendation()">Get Recommendation</button>
+        <p id="recommendation-text" style="margin-top: 20px; font-weight: bold;"></p>
+    </section>
+    <footer>
+        <p>© 2025 Sweet Delights Bakery</p>
+    </footer>
+</body>
+</html>

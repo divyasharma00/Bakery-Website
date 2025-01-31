@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #be653b;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            border-bottom: 2px solid #8B4513;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        header:hover {
+            background-color: #a85227;
+        }
+
+        section {
+            padding: 20px;
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-align: center;
+            cursor: pointer; /* Indicate clickability */
+        }
+
+        .menu-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-7px); /* Slightly more pronounced hover */
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12); /* More subtle hover shadow */
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            background-color: #be653b;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .pagination button:hover {
+            background-color: #a85227;
+        }
+
+        h1 {
+            text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Our Menu</h1>
+        </header>
+        <section>
+            <div class="menu-item">
+                <img src="https://th.bing.com/th/id/OIP.Z1wKL0LJPXjEzrSnmcDQxgHaLH?w=2332&h=3498&rs=1&pid=ImgDetMain" alt="Chocolate Cake">
+                <h3>Chocolate Cake</h3>
+                <p>Delicious chocolate cake with rich frosting.</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://thebusybaker.ca/wp-content/uploads/2020/07/blueberry-muffins-fb-ig-7-scaled.jpg" alt="Blueberry Muffins">
+                <h3>Blueberry Muffins</h3>
+                <p>Fluffy muffins packed with juicy blueberries.</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://th.bing.com/th/id/OIP.b8pBTSDstc7-jAIq7Fs6GgHaJH?w=831&h=1023&rs=1&pid=ImgDetMain" alt="Fresh Croissants">
+                <h3>Fresh Croissants</h3>
+                <p>Buttery and flaky croissants, baked fresh daily.</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://static01.nyt.com/images/2014/05/14/dining/14REDVELVET/14REDVELVET-superJumbo-v4.jpg" alt="Red Velvet Cake">
+                <h3>Red Velvet Cake</h3>
+                <p>Classic red velvet cake with cream cheese frosting.</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://th.bing.com/th/id/OIP.JOa-69PHRjga9loxsb88SwHaE7?rs=1&pid=ImgDetMain" alt="Oatmeal Cookies">
+                <h3>Oatmeal Cookies</h3>
+                <p>Chewy oatmeal cookies with raisins and nuts.</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://sweetpeaskitchen.files.wordpress.com/2010/10/dsc_0526.jpg" alt="Apple Pie">
+                <h3>Apple Pie</h3>
+                <p>Warm and comforting apple pie with a flaky crust.</p>
+            </div>
+        </section>
+        <div class="pagination">
+            <button onclick="goBack()">Back</button>
+            <button onclick="goForward()">Next</button>
+        </div>
+        <footer>
+            <p>&copy; 2025 Sweet Delights Bakery</p>
+        </footer>
+    </div>
+    <script>
+        function goBack() {
+            alert("Back button clicked"); // Placeholder
+        }
+
+        function goForward() {
+            alert("Forward button clicked"); // Placeholder
+        }
+    </script>
+</body>
+</html>
